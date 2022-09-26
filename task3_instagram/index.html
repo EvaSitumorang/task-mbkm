@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <title>Instagram</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="header_container">
+        <div class="branding">
+          <a href="#"><img class="ins_ico" src="./icon/instagram.png" alt="" srcset="" /></a>
+        </div>
+        <div class="searchbar">
+          <input class="search" placeholder="Search" type="search" name="" id="" />
+        </div>
+        <div class="iconbar">
+          <img class="icon_l" src="./icon/home.svg" alt="" srcset="" />
+          <img class="icon_l" src="./icon/explore.svg" alt="" srcset="" />
+          <img class="icon_l" src="./icon/plus.svg" alt="" srcset="" />
+          <img class="icon_l" src="./icon/message.svg" alt="" srcset="" />
+          <img class="icon_l" src="./icon/notification.svg" alt="" srcset="" />
+          <img class="icon_lI" src="./assets/profile.jpg" alt="" srcset="" />
+        </div>
+      </div>
+    </header>
+
+    <section class="main-container">
+      <div class="inner-container">
+        <div class="left-section">
+          <div class="story">
+            <div class="story-box">
+              <div class="story_l">
+                <img class="story_image" src="./assets/post5.jpg" alt="" srcset="" />
+                <p class="story_H">Yeobeen</p>
+              </div>
+              <div class="story_l">
+                <img class="story_image" src="./assets/post2.jpg" alt="" srcset="" />
+                <p class="story_H">Roses_are</p>
+              </div>
+              <div class="story_l">
+                <img class="story_image" src="./assets/post3.jpg" alt="" srcset="" />
+                <p class="story_H">Jenniejane</p>
+              </div>
+              <div class="story_l">
+                <img class="story_image" src="./assets/post4.jpg" alt="" srcset="" />
+                <p class="story_H">hi_songjoongki</p>
+              </div>
+              <div class="story_l">
+                <img class="story_image" src="./assets/post3.jpg" alt="" srcset="" />
+                <p class="story_H">skuukzky</p>
+              </div>
+              <div class="story_l">
+                <img class="story_image" src="./assets/post5.jpg" alt="" srcset="" />
+                <p class="story_H">geewonii</p>
+              </div>
+              <div class="story_l">
+                <img class="story_image" src="./assets/post1.jpg" alt="" srcset="" />
+                <p class="story_H">m_kayoung</p>
+              </div>
+            </div>
+            <i class="fas fa-chevron-circle-left icon-style2 nav-left" style="font-size: 24px"></i>
+            <i class="fas fa-chevron-circle-right icon-style1 nav-right" style="font-size: 24px"></i>
+          </div>
+
+          <div class="post-list" id="post-list"></div>
+        </div>
+      </div>
+    </section>
+    <script>
+      posts = [
+        {
+          posts_id: 1,
+          p_name: 'sooyaaa_',
+          photo: './post2.jpg',
+          caption: 'Work From Home',
+          likes: 12.334,
+          comment: 45.222,
+          date: new Date('09/02/2022'),
+        },
+        {
+          posts_id: 2,
+          p_name: 'lalalalisa_m',
+          photo: './post3.jpg',
+          caption: 'Focus On Me',
+          likes: 31.234,
+          comment: 12.222,
+          date: new Date('09/02/2022'),
+        },
+        {
+          posts_id: 3,
+          p_name: 'eunwo.c_u',
+          photo: './post4.jpg',
+          caption: 'Honey',
+          likes: 23.774,
+          comment: 32.222,
+          date: new Date('09/01/2022'),
+        },
+      ];
+
+      posts.forEach((p) => {
+        let postedDate = p.date;
+        let today = new Date();
+        let dd = String(today.getDate()).padStart(2, '0');
+        let mm = String(today.getMonth() + 1).padStart(2, '0');
+        let yyyy = today.getFullYear();
+        today = new Date(mm + '/' + dd + '/' + yyyy);
+        let diff_time = today.getTime() - postedDate.getTime();
+        let diff_days = diff_time / (1000 * 3600 * 24);
+
+        const post = `<div class="post">
+                        <div class="p_d">
+                            <div class="p_inner">
+                                <img class="p_p" src="./assets/post2.jpg" alt="" srcset="">
+                                <p class="p_name">${p.p_name}</p>
+                            </div>
+                            <img class="threedots" src="./icon/threedots.svg" alt="" srcset="">
+                        </div>
+                        <div class="p_image">
+                            <img class="pp_full" src="assets/${p.photo}" alt="" srcset="">
+                        </div>
+                        <div class="reaction_icon">
+                            <div class="left_i">
+                                <img src="./icon/notification.svg" alt="" srcset="" class="heart" onclick="likeButton()"/>
+                                <img src="./icon/comment.svg" alt="" srcset="">
+                                <img src="./icon/share.svg" alt="" srcset="">
+                                <h4 class="likes">${p.likes} likes</h4>
+                                <p class="caption">
+                                  <b>${p.p_name}</b><br><br>${p.caption}
+                                </p>
+                                <h4 class="comments">View all ${p.comment} comments</h4>
+                                <div class="date">${diff_days} days ago</div> 
+                            </div>               
+                            <div class="rigts_i">
+                                <img src="./icon/save.svg" alt="" srcset="">
+                            </div>                   
+                        </div>
+                        <div class="comment_section">                      
+                            <div class="input_box">
+                                <div class="user">
+                                  <img src="assets/profile.jpg" class="cover">
+                                </div>
+                                <input class="input_c" placeholder="Add a comment..."   type="text" name="" id="">
+                            </div>
+                            <div class="c_txt">
+                                <p>Post</p>
+                            </div>
+                        </div>
+                    </div>`;
+
+        document.getElementById('post-list').innerHTML += post;
+      });
+    </script>
+  </body>
+</html>
